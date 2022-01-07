@@ -1,0 +1,97 @@
+String Nombre = "Ingresa tu nombre: ";
+String P1 = "Cual es el resultado de 5 + 5 ? Escribe la respuesta en numero. ";
+String P2 = "Cual es el resultado de 10 x 5 ? Escribe la respuesta en numero. ";
+String P3 = "Cual es el resultado de 20 x 10? Escribe la respuesta en numero. ";
+int UserRes1,  UserRes2,  UserRes3;
+int Aciertos;
+int R1 = 10, R2 = 50, R3 = 200;
+int Led10 = 10;
+int Led5 = 5;
+
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(9600);
+pinMode(Led10, OUTPUT);
+pinMode(Led5, OUTPUT);
+
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+                                     // PROBLEMA 1 
+Serial.println(Nombre);
+
+while(Serial.available() == 0){    // Se pregunta el nombre
+  
+  }
+Nombre = Serial.readString();    //  Guarda los datos de una palabra 
+
+Serial.println(P1);  
+
+                                // Inicio del problema 1
+
+while(Serial.available() == 0){
+  }
+
+UserRes1 = Serial.parseInt();
+
+if(UserRes1 == R1){
+  Aciertos++;
+  digitalWrite(Led10, HIGH);
+  digitalWrite(Led5, LOW);
+  Serial.println("Felicidades " + String(Nombre) + " acertaste.");
+  
+  }
+else{
+  digitalWrite(Led5, HIGH);
+  digitalWrite(Led10, LOW);
+  Serial.println("Fallaste " + Nombre + ", sigue intentandolo.");  //  Fin del problema 1
+  }  
+  
+                               //  PROBLEMA 2 (AQUI ESTA EL PROBLEMA)
+Serial.println(P2);
+
+while(Serial.available() == 0){
+                                   //  Solo se hace la pregunta
+  }
+UserRes2 = Serial.parseInt();
+
+if(UserRes2 == R2){
+  Aciertos++;
+  digitalWrite(Led10, HIGH);
+  digitalWrite(Led5, LOW);
+  Serial.println("Felicidades " + Nombre + " esa es la respuesta correcta.");
+  
+  }
+else{
+  digitalWrite(Led5, HIGH);
+  digitalWrite(Led10, LOW);
+  Serial.println("Fallaste " + Nombre + ", sigue esforzandote.");
+  }  
+
+                                          //  PROBLEMA 3
+Serial.println(P3);
+
+while(Serial.available() == 0){
+                                   //  Solo se hace la pregunta
+  }
+UserRes3 = Serial.parseInt();
+
+if(UserRes3 == R3){
+  Aciertos++;
+  digitalWrite(Led10, HIGH);
+  digitalWrite(Led5, LOW);
+  Serial.println("Felicidades " + Nombre + " tu respuesta es correcta.");
+  
+  }
+else{
+  digitalWrite(Led5, HIGH);
+  digitalWrite(Led10, LOW);
+  Serial.println("Fallaste " + Nombre + ", sigue esforzandote.");
+  } 
+
+Serial.println(Nombre + ", tuviste un total de: " + String(Aciertos) + " / 3 aciertos.");
+delay(500); // Dar tiempo a escribir texto
+
+exit(0);                                         // Finalizar programa
+}
